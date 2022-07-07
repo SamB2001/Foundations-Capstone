@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const path = require('path')
-const {SERVER_PORT} = process.env
+const {SERVER_PORT} = process.env.PORT || 4000
 const {seed, createUser} = require('./controller.js')
 
 app.use(express.json())
