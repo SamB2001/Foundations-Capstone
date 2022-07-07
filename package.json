@@ -10,5 +10,24 @@
     "pg-hstore": "^2.3.4",
     "selenium-webdriver": "^4.3.1",
     "sequelize": "^6.21.2"
-  }
+  },
+  "name": "foundationscapstone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamB2001/Foundations-Capstone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamB2001/Foundations-Capstone/issues"
+  },
+  "homepage": "https://github.com/SamB2001/Foundations-Capstone#readme",
+  "description": ""
 }
