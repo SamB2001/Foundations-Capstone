@@ -24,7 +24,7 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
     },
     seed: (req, res) => {
         sequelize.query(`
-        CREATE TABLE users (
+        CREATE TABLE IF NOT EXISTS users (
             user_id SERIAL PRIMARY KEY,
             username VARCHAR(50) NOT NULL,
             user_email VARCHAR(100) NOT NULL,
