@@ -20,7 +20,7 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
         INSERT INTO users (username, user_email, password)
             VALUES ('${username}', '${userEmail}', '${password}')
         `)
-        .then(dbres => res.status(200).send(dbRes[0]))
+        .then(dbRes => res.status(200).send(dbRes[0]))
     },
     seed: (req, res) => {
         sequelize.query(`
@@ -29,12 +29,12 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
             username VARCHAR(50) NOT NULL,
             user_email VARCHAR(100) NOT NULL,
             password VARCHAR(50) NOT NULL
+            );
 
             INSERT INTO users 
             (username, user_email, password)
             VALUES
-            ('Sam', 's@g.com', '1234')
-        )
+            ('Sam', 's@g.com', '1234');
         `).then(() => {
             console.log('DB seeded!')
             res.sendStatus(200)
