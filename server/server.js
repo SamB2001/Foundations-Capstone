@@ -13,7 +13,6 @@ const connection = mysql.createConnection({
 })
 const SERVER_PORT = process.env.PORT || 4000
 const {seed, createUser} = require('./controller.js');
-const { res } = require('express');
 
 app.use(express.json())
 app.use(cors())
@@ -42,7 +41,7 @@ app.get('/js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.js'))
 })
 
-app.post('/auth', (req, res) => {
+app.post('https://sb-foundations-capstone.herokuapp.com/', (req, res) => {
     let username = req.body.loginUsername
     let password = req.body.loginPassword
     if (username && password){

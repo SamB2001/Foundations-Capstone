@@ -88,6 +88,6 @@ function submitHandler(event) {
     
     sendSignup(body)
 }
-signupForm.addEventListener('submit', submitHandler)
+sendSignup.addEventListener('submit', submitHandler)
 
 
