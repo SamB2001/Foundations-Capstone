@@ -13,7 +13,7 @@ const connection = mysql.createConnection({
 })
 const SERVER_PORT = process.env.PORT || 4000
 const {seed, createUser} = require('./controller.js');
-const { response } = require('express');
+const { res } = require('express');
 
 app.use(express.json())
 app.use(cors())
