@@ -1,4 +1,4 @@
-
+const mysql = require('mysql');
 const signUp = document.querySelector('#createAccount')
 const username = document.querySelector('#signupUsername')
 const email = document.querySelector('#signupEmail')
