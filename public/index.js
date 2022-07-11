@@ -4,6 +4,17 @@ const username = document.querySelector('#signupUsername')
 const email = document.querySelector('#signupEmail')
 const password = document.querySelector('#pass')
 const signUpBtn = document.querySelector('#signUpBtn')
+const DB_HOST = process.env.DB_HOST
+const DB_USER = process.env.DB_USER
+const DB_PASSWORD = process.env.DB_PASSWORD
+const DB_DATABASE = process.env.DB_DATABASE
+const SERVER_PORT = process.env.PORT || 4000
+const connection = mysql.createConnection({
+    host: DB_HOST,
+    user: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_DATABASE
+})
 const signupURL = `https://sb-foundations-capstone.herokuapp.com/`
 
 
@@ -43,7 +54,24 @@ document.addEventListener("DOMContentLoaded", () => {
     
     loginForm.addEventListener("submit", (e) => {
         e.preventDefault()
-
+        let username = req.body.loginUsername
+    let password = req.body.loginPassword
+    if (username && password){
+        connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields){
+            if (error) throw error
+            if (results.length > 0) {
+                req.session.loggedin = true;
+                req.session.username = username;
+                res.redirect('https://www.modernmetalsutah.com/fire-table-look-book')
+            } else {
+                res.send('Incorrect Username or Password')
+            }
+            res.end()
+        })
+    } else {
+        res.send('Please enter Username and Password')
+        res.end()
+    }
 
         setFormMessage(loginForm, "error", "Invalid username or password")
     })
