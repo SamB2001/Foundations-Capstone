@@ -3,6 +3,7 @@ const signUp = document.querySelector('#createAccount')
 const username = document.querySelector('#signupUsername')
 const email = document.querySelector('#signupEmail')
 const password = document.querySelector('#pass')
+const signUpBtn = document.querySelector('#signUpBtn')
 const signupURL = `https://sb-foundations-capstone.herokuapp.com/`
 
 
@@ -88,6 +89,6 @@ function submitHandler(event) {
     
     sendSignup(body)
 }
-sendSignup.addEventListener('submit', submitHandler)
+signUpBtn.addEventListener('submit', sendSignup)
 
 

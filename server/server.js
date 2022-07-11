@@ -18,22 +18,6 @@ const connection = mysql.createConnection({
     database: DB_DATABASE
 })
 
-const client = new Client({
-    connectionString: process.env.CONNECTION_STRING,
-    ssl: {
-      rejectUnauthorized: false
-    }
-  });
-  
-  client.connect();
-  
-  client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-    if (err) throw err;
-    for (let row of res.rows) {
-      console.log(JSON.stringify(row));
-    }
-    client.end();
-  });
 
 const {seed, createUser} = require('./controller.js');
 
