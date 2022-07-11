@@ -5,6 +5,7 @@ const app = express()
 const cors = require('cors')
 const path = require('path')
 const mysql = require('mysql');
+const { Client } = require('pg');
 const DB_HOST = process.env.DB_HOST
 const DB_USER = process.env.DB_USER
 const DB_PASSWORD = process.env.DB_PASSWORD
@@ -16,6 +17,24 @@ const connection = mysql.createConnection({
     password: DB_PASSWORD,
     database: DB_DATABASE
 })
+
+const client = new Client({
+    connectionString: process.env.CONNECTION_STRING,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+  
+  client.connect();
+  
+  client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+    if (err) throw err;
+    for (let row of res.rows) {
+      console.log(JSON.stringify(row));
+    }
+    client.end();
+  });
+
 const {seed, createUser} = require('./controller.js');
 
 app.use(express.json())
