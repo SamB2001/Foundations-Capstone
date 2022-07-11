@@ -85,7 +85,7 @@ function submitHandler(event) {
 
     username.value = ''
     email.value = ''
-    password = ''
+    password.value = ''
     
     sendSignup(body)
 }
