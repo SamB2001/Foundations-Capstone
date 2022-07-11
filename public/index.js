@@ -1,19 +1,14 @@
-require('dotenv').config()
+
 const signUp = document.querySelector('#createAccount')
 const username = document.querySelector('#signupUsername')
 const email = document.querySelector('#signupEmail')
 const password = document.querySelector('#pass')
 const signUpBtn = document.querySelector('#signUpBtn')
-const DB_HOST = process.env.DB_HOST
-const DB_USER = process.env.DB_USER
-const DB_PASSWORD = process.env.DB_PASSWORD
-const DB_DATABASE = process.env.DB_DATABASE
-const SERVER_PORT = process.env.PORT || 4000
 const connection = mysql.createConnection({
-    host: DB_HOST,
-    user: DB_USER,
-    password: DB_PASSWORD,
-    database: DB_DATABASE
+    host: 'https://sb-foundations-capstone.herokuapp.com/',
+    user: 'hfgbnalmrzqfkn',
+    password: '7052a6d4a668253f09f392fcdee27478891ed925ba3540d765c42ad884857e67',
+    database: 'dcdkpp79d8r136'
 })
 const signupURL = `https://sb-foundations-capstone.herokuapp.com/`
 
