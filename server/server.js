@@ -48,7 +48,7 @@ app.get('/js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.js'))
 })
 
-app.post('https://sb-foundations-capstone.herokuapp.com/', (req, res) => {
+app.post('https://sb-foundations-capstone.herokuapp.com/db', (req, res) => {
     let username = req.body.loginUsername
     let password = req.body.loginPassword
     if (username && password){
