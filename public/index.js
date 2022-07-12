@@ -1,15 +1,12 @@
-const mysql = require('mysql');
+const { default: axios } = require("axios")
+
 const signUp = document.querySelector('#createAccount')
 const username = document.querySelector('#signupUsername')
 const email = document.querySelector('#signupEmail')
 const password = document.querySelector('#pass')
 const signUpBtn = document.querySelector('#signUpBtn')
-const connection = mysql.createConnection({
-    host: 'https://sb-foundations-capstone.herokuapp.com/',
-    user: 'hfgbnalmrzqfkn',
-    password: '7052a6d4a668253f09f392fcdee27478891ed925ba3540d765c42ad884857e67',
-    database: 'dcdkpp79d8r136'
-})
+const loginUser = document.querySelector('#loginUsername')
+const loginPass = document.querySelector('#loginPassword')
 const signupURL = `https://sb-foundations-capstone.herokuapp.com/`
 
 
@@ -49,24 +46,15 @@ document.addEventListener("DOMContentLoaded", () => {
     
     loginForm.addEventListener("submit", (e) => {
         e.preventDefault()
-        let username = req.body.loginUsername
-    let password = req.body.loginPassword
-    if (username && password){
-        connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields){
-            if (error) throw error
-            if (results.length > 0) {
-                req.session.loggedin = true;
-                req.session.username = username;
-                res.redirect('https://www.modernmetalsutah.com/fire-table-look-book')
-            } else {
-                res.send('Incorrect Username or Password')
-            }
-            res.end()
+        let body = {
+            username: loginUser.value,
+            password: loginPass.value
+        }
+        axios.post('/server/server.js', body)
+        .then(() => {
+            loginUser.value = ''
+            loginPass.value = ''
         })
-    } else {
-        res.send('Please enter Username and Password')
-        res.end()
-    }
 
         setFormMessage(loginForm, "error", "Invalid username or password")
     })
