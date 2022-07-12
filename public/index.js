@@ -29,7 +29,8 @@ function clearInputError(inputElement) {
 }
 
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", (e) => {
+    e.preventDefault();
     const loginForm = document.querySelector("#login");
     const createAccountForm = document.querySelector("#createAccount");
 
