@@ -48,9 +48,12 @@ app.get('/js', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.js'))
 })
 
-app.post('https://sb-foundations-capstone.herokuapp.com/db', (req, res) => {
-    let username = req.body.loginUsername
-    let password = req.body.loginPassword
+app.post('/login', (req, res) => {
+    let username = req.body.username
+    let password = req.body.password
+    console.log('login is running controller on backend')
+    console.log(username)
+    console.log(password)
     if (username && password){
         connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields){
             if (error) throw error
@@ -69,7 +72,11 @@ app.post('https://sb-foundations-capstone.herokuapp.com/db', (req, res) => {
     }
 })
 
-app.get('https://www.modernmetalsutah.com/fire-table-look-book', (req, res) => {
+app.get('/signup', (req, res) => {
+    console.log('signup attempted')
+})
+
+app.get('/fire-table-look-book', (req, res) => {
     if (req.session.loggedin){
         res.send('Welcome back, ' + req.session.username + '!')
     } else {
