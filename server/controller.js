@@ -12,6 +12,29 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
   })
 
   module.exports = {
+    loginUser: (req, res) => {
+        app.post('/login', (req, res) => {
+            let username = req.body
+            let password = req.body
+            if (username && password){
+                sequelize.query(`SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`, [username, password], function(error, results, fields){
+                    if (error) throw error
+                    if (results.length > 0) {
+                        req.session.loggedin = true;
+                        req.session.username = username;
+                        console.log('login is running controller on backend')
+                        res.redirect('https://www.modernmetalsutah.com/fire-table-look-book')
+                    } else {
+                        res.send('Incorrect Username or Password')
+                    }
+                    res.end()
+                })
+            } else {
+                res.send('Please enter Username and Password')
+                res.end()
+            }
+        })
+    },
 
     createUser: (req, res) => {
         let { username, userEmail, password } = req.body

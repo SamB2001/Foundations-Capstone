@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
             username: loginUser.value,
             password: loginPass.value
         }
-        axios.post('https://sb-foundations-capstone.herokuapp.com/db', body)
+        axios.post('/login', body)
         .then(() => {
             loginUser.value = ''
             loginPass.value = ''
