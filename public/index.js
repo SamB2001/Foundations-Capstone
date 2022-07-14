@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(res.data)
             username.value = ''
             password.value = ''
-            window.location.href=("https://sb-foundations-capstone.herokuapp.com/test")
+            window.location.href=("https://www.modernmetalsutah.com/fire-table-look-book")
         })}
 
     loginForm.addEventListener("submit", loginSubmit)
