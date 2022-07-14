@@ -1,4 +1,3 @@
-// const { default: axios } = require("axios")
 
 const signUp = document.querySelector('#createAccount')
 const username = document.querySelector('#signupUsername')
@@ -44,20 +43,37 @@ document.addEventListener("DOMContentLoaded", () => {
         createAccountForm.classList.add("form--hidden");
     });
     
-    loginForm.addEventListener("submit", (e) => {
+    const loginSubmit = (e) => {
         e.preventDefault()
         let body = {
             username: loginUser.value,
             password: loginPass.value
         }
         axios.post('/login', body)
-        .then(() => {
-            loginUser.value = ''
-            loginPass.value = ''
-        })
+        .then(res => {
+            console.log(res.data)
+            username.value = ''
+            password.value = ''
+            window.location.href=("https://sb-foundations-capstone.herokuapp.com/test")
+        })}
 
-        setFormMessage(loginForm, "error", "Invalid username or password")
-    })
+    loginForm.addEventListener("submit", loginSubmit)
+    //  (e) => {
+    //     e.preventDefault()
+    //     let body = {
+    //         username: loginUser.value,
+    //         password: loginPass.value
+    //     }
+    //     axios.post('/login', body)
+    //     .then(res => {
+    //         console.log(res.data)
+    //         username.value = ''
+    //         password.value = ''
+    //         window.location.href=("https://sb-foundations-capstone.herokuapp.com/test")
+    //     })
+
+    //     setFormMessage(loginForm, "error", "Invalid username or password")
+    // })
     
     document.querySelectorAll(".form__input").forEach(inputElement => {
         inputElement.addEventListener("blur", event =>{
@@ -74,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const sendSignup = (body) => {
     axios.post(signupURL, body)
     .then(res => {
+        console.log(res.data)
         if (res.data.success){
             alert('Signup Successful!')
         } else {
